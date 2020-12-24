@@ -1,11 +1,19 @@
 <template>
   <div class="tours">
     <section v-for="(el, i) in data.data.data" :key="i" class="card">
-      <img :src="el.attributes.principal_photo" :alt="el.attributes.name" />
-      <h1>{{ el.attributes.name }}</h1>
-      <p>{{ el.attributes.country_iso }}</p>
-      <p>{{ el.attributes.avg_hours }} horas</p>
-      <p>$ {{ el.attributes.dolar_price }}</p>
+      <div class="card__image">
+        <img :src="el.attributes.principal_photo" :alt="el.attributes.name" />
+      </div>
+      <div class="card__info">
+        <div class="info-left">
+          <h1>{{ el.attributes.name }}</h1>
+          <p>{{ el.attributes.avg_hours }} horas</p>
+        </div>
+        <div class="info-right">
+          <p>{{ el.attributes.country_iso }}</p>
+          <p>$ {{ el.attributes.dolar_price }}</p>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -42,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .tours {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -50,6 +58,20 @@ export default {
 }
 
 .card {
+  display: grid;
+  height: 300px;
+  grid-template-columns: 40% 1fr;
   border: 1px black solid;
+
+  .card__image {
+    margin: 0;
+    overflow: hidden;
+
+    img {
+      display: block;
+      margin-top: -10%;
+      margin-left: -40%;
+    }
+  }
 }
 </style>
